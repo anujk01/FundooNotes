@@ -1,0 +1,13 @@
+C:\Git\FundooNotes\CommonLayer\bin\Debug\netcoreapp3.1\CommonLayer.deps.json
+C:\Git\FundooNotes\CommonLayer\bin\Debug\netcoreapp3.1\CommonLayer.runtimeconfig.json
+C:\Git\FundooNotes\CommonLayer\bin\Debug\netcoreapp3.1\CommonLayer.runtimeconfig.dev.json
+C:\Git\FundooNotes\CommonLayer\bin\Debug\netcoreapp3.1\CommonLayer.dll
+C:\Git\FundooNotes\CommonLayer\bin\Debug\netcoreapp3.1\CommonLayer.pdb
+C:\Git\FundooNotes\CommonLayer\obj\Debug\netcoreapp3.1\CommonLayer.csproj.AssemblyReference.cache
+C:\Git\FundooNotes\CommonLayer\obj\Debug\netcoreapp3.1\CommonLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\FundooNotes\CommonLayer\obj\Debug\netcoreapp3.1\CommonLayer.AssemblyInfoInputs.cache
+C:\Git\FundooNotes\CommonLayer\obj\Debug\netcoreapp3.1\CommonLayer.AssemblyInfo.cs
+C:\Git\FundooNotes\CommonLayer\obj\Debug\netcoreapp3.1\CommonLayer.csproj.CoreCompileInputs.cache
+C:\Git\FundooNotes\CommonLayer\obj\Debug\netcoreapp3.1\CommonLayer.dll
+C:\Git\FundooNotes\CommonLayer\obj\Debug\netcoreapp3.1\CommonLayer.pdb
+C:\Git\FundooNotes\CommonLayer\obj\Debug\netcoreapp3.1\CommonLayer.genruntimeconfig.cache
