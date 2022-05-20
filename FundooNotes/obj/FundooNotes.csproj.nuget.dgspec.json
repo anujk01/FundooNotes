@@ -219,10 +219,6 @@
               "target": "Package",
               "version": "[5.0.11, )"
             },
-            "Microsoft.EntityFrameworkCore.Analyzers": {
-              "target": "Package",
-              "version": "[5.0.11, )"
-            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -242,6 +238,14 @@
             "Microsoft.Extensions.Caching.Memory": {
               "target": "Package",
               "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Caching.Redis": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[6.0.5, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
@@ -334,6 +338,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Experimental.System.Messaging": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
             "MSMQ.Messaging": {
               "target": "Package",
               "version": "[1.0.2, )"
@@ -361,10 +369,6 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.11, )"
-            },
-            "MySql.Data": {
-              "target": "Package",
-              "version": "[6.10.7, )"
             }
           },
           "imports": [

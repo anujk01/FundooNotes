@@ -38,6 +38,15 @@
           "lib/netstandard2.0/Azure.Identity.dll": {}
         }
       },
+      "Experimental.System.Messaging/1.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Experimental.System.Messaging.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Experimental.System.Messaging.dll": {}
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -464,20 +473,6 @@
           "lib/netstandard2.0/MSMQ.Messaging.dll": {}
         }
       },
-      "MySql.Data/6.10.7": {
-        "type": "package",
-        "dependencies": {
-          "System.Configuration.ConfigurationManager": "4.4.0",
-          "System.Security.Permissions": "4.4.0",
-          "System.Text.Encoding.CodePages": "4.0.1"
-        },
-        "compile": {
-          "lib/netcoreapp2.0/MySql.Data.dll": {}
-        },
-        "runtime": {
-          "lib/netcoreapp2.0/MySql.Data.dll": {}
-        }
-      },
       "System.Buffers/4.5.0": {
         "type": "package",
         "compile": {
@@ -512,7 +507,7 @@
           "System.Security.Permissions": "4.7.0"
         },
         "compile": {
-          "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
+          "ref/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
@@ -727,7 +722,7 @@
           "Microsoft.NETCore.Platforms": "3.1.0"
         },
         "compile": {
-          "lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+          "lib/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
@@ -832,6 +827,20 @@
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml",
         "pkgicon.png"
+      ]
+    },
+    "Experimental.System.Messaging/1.1.0": {
+      "sha512": "vub7Mtt2WFdFKTZKECVuZx6feP5kUpS9EfVy+Yu4GDfdlMwivRdX4TbdkDYS2lKqCjqzUbnxTbJei1IOqC+CnA==",
+      "type": "package",
+      "path": "experimental.system.messaging/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "experimental.system.messaging.1.1.0.nupkg.sha512",
+        "experimental.system.messaging.nuspec",
+        "lib/netstandard2.0/Experimental.System.Messaging.dll",
+        "lib/netstandard2.0/Experimental.System.Messaging.xml"
       ]
     },
     "Humanizer.Core/2.8.26": {
@@ -1583,25 +1592,6 @@
         "lib/netstandard2.0/MSMQ.Messaging.dll",
         "msmq.messaging.1.0.2.nupkg.sha512",
         "msmq.messaging.nuspec"
-      ]
-    },
-    "MySql.Data/6.10.7": {
-      "sha512": "2fptledJVo4GaF/DOpWgumn+pteZ2eNlaZTE8I6CUvK7Zz5UGPWTg3v9l4Ymp9ewivodYI5VDn6ucVyKL/e++A==",
-      "type": "package",
-      "path": "mysql.data/6.10.7",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net452/MySql.Data.dll",
-        "lib/net452/MySql.Data.xml",
-        "lib/netcoreapp2.0/MySql.Data.dll",
-        "lib/netcoreapp2.0/MySql.Data.xml",
-        "lib/netstandard1.3/MySql.Data.dll",
-        "lib/netstandard1.3/MySql.Data.xml",
-        "lib/netstandard2.0/MySql.Data.dll",
-        "lib/netstandard2.0/MySql.Data.xml",
-        "mysql.data.6.10.7.nupkg.sha512",
-        "mysql.data.nuspec"
       ]
     },
     "System.Buffers/4.5.0": {
@@ -2412,13 +2402,13 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "CommonLayer >= 1.0.0",
+      "Experimental.System.Messaging >= 1.1.0",
       "MSMQ.Messaging >= 1.0.2",
       "Microsoft.Data.SqlClient >= 3.0.1",
       "Microsoft.EntityFrameworkCore >= 5.0.11",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.11",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.11",
-      "Microsoft.EntityFrameworkCore.Tools >= 5.0.11",
-      "MySql.Data >= 6.10.7"
+      "Microsoft.EntityFrameworkCore.Tools >= 5.0.11"
     ]
   },
   "packageFolders": {
@@ -2464,6 +2454,10 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
+          "Experimental.System.Messaging": {
+            "target": "Package",
+            "version": "[1.1.0, )"
+          },
           "MSMQ.Messaging": {
             "target": "Package",
             "version": "[1.0.2, )"
@@ -2491,10 +2485,6 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[5.0.11, )"
-          },
-          "MySql.Data": {
-            "target": "Package",
-            "version": "[6.10.7, )"
           }
         },
         "imports": [

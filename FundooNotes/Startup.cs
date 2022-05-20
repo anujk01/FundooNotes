@@ -37,34 +37,8 @@ namespace FundooNotes
         {
             services.AddControllers();
             services.AddDbContext<FundooContext>(opts => opts.UseSqlServer(Configuration["ConnectionStrings:FundooNotes"]));
-            services.AddTransient<IUserBL, UserBL>();
-            services.AddTransient<IUserRL, UserRL>();
-            services.AddSwaggerGen(setup =>
-            {
-                // Include 'SecurityScheme' to use JWT Authentication
-                var jwtSecurityScheme = new OpenApiSecurityScheme
-                {
-                    Scheme = "bearer",
-                    BearerFormat = "JWT",
-                    Name = "JWT Authentication",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.Http,
-                    Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
-
-                    Reference = new OpenApiReference
-                    {
-                        Id = JwtBearerDefaults.AuthenticationScheme,
-                        Type = ReferenceType.SecurityScheme
-                    }
-                };
-
-                setup.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
-                setup.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {jwtSecurityScheme, Array.Empty<string>() }
-                });
-
-            });
+            
+            services.AddDbContext<FundooContext>(opts => opts.UseSqlServer(Configuration["ConnectionStrings:FundooDataBase"]));
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -81,6 +55,38 @@ namespace FundooNotes
                     ValidateAudience = false
                 };
             });
+
+            services.AddSwaggerGen(setup =>
+            {
+                //Include 'SecurityScheme' to use JWT Authentication
+                var jwtSecurityScheme = new OpenApiSecurityScheme
+                {
+                    Scheme = "bearer",
+                    BearerFormat = "JWI",
+                    Name = "JWT Authentication",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Description = "Put **ONLY** your JWT Bearer taken on textbox below!",
+
+                    Reference = new OpenApiReference
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+
+                setup.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+                setup.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    { jwtSecurityScheme, Array.Empty<String>()}
+                });
+            });
+            services.AddTransient<IUserBL, UserBL>();
+            services.AddTransient<IUserRL, UserRL>();
+            services.AddTransient<INoteBL, NoteBL>();
+            services.AddTransient<INoteRL, NoteRL>();
+            services.AddTransient<ILabelBL, LabelBL>();
+            services.AddTransient<ILabelRL, LabelRL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -100,6 +106,12 @@ namespace FundooNotes
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "FundooNotes");
             });
             app.UseAuthentication();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            app.UseHttpsRedirection();
+            app.UseRouting();
             
             app.UseAuthorization();
 

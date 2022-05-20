@@ -41,7 +41,6 @@ namespace RepositoryLayer.Services
                 throw ex;
             }
         }
-
         public string LoginUser(string email, string password)
         {
             try
@@ -51,7 +50,7 @@ namespace RepositoryLayer.Services
                 {
                     return null;
                 }
-                return GetJWTToken(email, result.userId);
+                return GetJWTToken(email, result.userid);
             }
             catch (Exception ex)
             {
@@ -63,13 +62,13 @@ namespace RepositoryLayer.Services
             //generate token
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var tokenKey = Encoding.ASCII.GetBytes("This_IS_MY_KEY_TO_GENERATE_TOKEN");
+            var tokenKey = Encoding.ASCII.GetBytes("THIS_IS_MY_KEY_TO_GENERATE_TOKEN");
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim("email", email),
-                    new Claim("userId", userId.ToString())
+                    new Claim("userid", userId.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
 
@@ -104,7 +103,7 @@ namespace RepositoryLayer.Services
 
                 Message message = new Message();
                 message.Formatter = new BinaryMessageFormatter();
-                message.Body = GetJWTToken(email, result.userId);
+                message.Body = GetJWTToken(email, result.userid);
                 message.Label = "Forget Password Email";
                 FundooQ.Send(message);
                 Message msg = FundooQ.Receive();
@@ -154,7 +153,7 @@ namespace RepositoryLayer.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim("Email", email)
+                    new Claim("email", email)
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
 
@@ -167,6 +166,27 @@ namespace RepositoryLayer.Services
             return tokenHandler.WriteToken(token);
         }
 
-         
+        public bool ChangePassword(string email, ChangePasswordModel changePassword)
+        {
+            try
+            {
+                if(changePassword.password.Equals(changePassword.confirmPassword))
+                {
+                    var user = fundooContext.User.Where(x => x.email == email).FirstOrDefault();
+                    user.password = StringCipher.EncodePasswordToBase64(changePassword.password);
+                    fundooContext.SaveChanges();
+                    return true;
+
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            { 
+                throw;
+            }
+        }
     }
 }
